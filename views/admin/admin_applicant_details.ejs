@@ -87,7 +87,7 @@
             }, []);
 
             const fetchApplicantData = () => {
-                axios.get('http://localhost:3200/admin/getApplicantData').then((response) => {
+                axios.get('http://localhost:3000/admin/getApplicantData').then((response) => {
                     const data = response.data.applicantList[0] || {};
                     setApplicantList({
                         first_name: data.first_name || '',

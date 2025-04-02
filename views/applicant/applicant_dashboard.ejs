@@ -166,7 +166,7 @@
 
         const fetchDashboardDetails = () => {
           axios
-            .get("http://localhost:3200/jobSeeker/dashboard")
+            .get("http://localhost:3000/jobSeeker/dashboard")
             .then((response) => {
               const { user, applications, uniqueJobs } = response.data;
               setUserProfile(user);

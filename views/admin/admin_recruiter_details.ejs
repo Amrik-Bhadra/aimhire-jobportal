@@ -71,7 +71,7 @@
             }, []);
 
             const fetchRecruiterData = () => {
-                axios.get('http://localhost:3200/admin/getRecruiterData').then((response) => {
+                axios.get('http://localhost:3000/admin/getRecruiterData').then((response) => {
                     const data = response.data.recruiterList[0] || {};
                     setRecruiterList({
                         creator_fname: data.creator_fname || '',

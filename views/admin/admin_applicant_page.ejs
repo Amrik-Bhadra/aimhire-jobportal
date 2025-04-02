@@ -81,7 +81,7 @@
 
             // fetch function to get all recruiter data
             const fetchApplicantData = ()=>{
-                axios.get('http://localhost:3200/admin/applicantList').then((response)=>{
+                axios.get('http://localhost:3000/admin/applicantList').then((response)=>{
                     setApplicantList(response.data.rows);
                 }).catch((error)=>{
                     console.error("Error fetching data:", error);

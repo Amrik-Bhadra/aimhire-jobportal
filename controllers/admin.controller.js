@@ -1,4 +1,5 @@
 var conn = require('../database/dbConnect.js');
+const md5 = require('md5');
 
 const openAdminDashboard = (req, res) => {
     if (!req.session.isAdminLoggedIn) {
