@@ -11,17 +11,29 @@ const login = (req, res) => {
 
     const query = `SELECT * FROM applicant_credentials WHERE emailID = ? and password = ? LIMIT 1`;
 
-    conn.query(query, [email, encPass], (err, result) => {
+    conn.query(query, [email, encPass], async(err, result) => {
         if (err) {
             console.log(err)
             return;
         }
         if (result.length > 0) {
             if (result[0].isActive == 1) {
-                req.session.loggedIn = true;
+                // req.session.loggedIn = true;
+                // console.log('applicant logged in');
                 req.session.applicantId = result[0].applicant_id;
-                console.log('applicant logged in');
-                res.redirect('/jobSeeker?toastNotification=Logged In Successfully!');
+                try {
+                    const mailResult = await mailFunc.sendOtp(email, 'OTP Verification');
+                    if (mailResult.success) {
+                        console.log(mailResult.otp);
+                        req.session.otp = mailResult.otp;
+                        req.session.applicantId = result[0].applicant_id;
+                        res.render('form/verify_otp')
+                    }
+                } catch (error) {
+                    console.log(error);
+                    res.send('Error sending email');
+                }
+                // res.redirect('/jobSeeker?toastNotification=Logged In Successfully!');
             } else {
                 res.render('form/login_via_password', { errorMsg: null, display: true });
             }
@@ -68,10 +80,7 @@ const verifyOtp = (req, res) => {
     const otp = req.session.otp;
     const enteredOtp = req.body.otp;
 
-    console.log('verify_otp_route_main_part');
-
     if (otp === enteredOtp) {
-        console.log('verify_otp_route_if_part');
         req.session.loggedIn = true;
         res.redirect('/jobSeeker?toastNotification=Logged In Successfully!');
     } else {

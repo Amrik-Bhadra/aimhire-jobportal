@@ -11,7 +11,7 @@ router.post('/login', login);
 
 // route to open the login via otp form
 router.get('/login_via_otp', (req, res) => {
-    res.render('form/login_via_otp', { errorMsg: null });
+    res.render('form/login_via_otp', { errorMsg: null, display: false });
 });
 
 router.post('/login_via_otp', login_via_otp);
