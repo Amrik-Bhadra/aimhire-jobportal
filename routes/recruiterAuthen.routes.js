@@ -1,5 +1,5 @@
 const express = require('express');
-const { recruiterLogin, recruiterRegister, recruiterForgetPassword, resendOtp, recruiterVerifyOtp, recruiterResetPassword, recruiterLogOut } = require('../controllers/recruiterAuth.controler');
+const { recruiterLogin, recruiterRegister, recruiterForgetPassword, resendOtp, recruiterVerifyOtp, recruiterResetPassword, recruiterLogOut, verify_2fa } = require('../controllers/recruiterAuth.controler');
 const router = express.Router();
 
 // login route for recruiter coming from the login button clicked
@@ -42,6 +42,13 @@ router.get('/verifyotp', (req, res)=>{
 
 // route to verify otp
 router.post('/verifyotp', recruiterVerifyOtp);
+
+router.get('/verify_2fa', (req, res)=>{
+    res.render('recruiter/recruiter_forms/recruiter_2fa', {errorMsg: null});
+});
+
+// route to verify 2fa
+router.post('/verify_2fa', verify_2fa);
 
 // route to perform reset password operations
 router.post('/reset_password', recruiterResetPassword);

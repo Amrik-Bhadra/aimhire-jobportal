@@ -9,7 +9,7 @@ const recruiterLogin = (req, res) => {
 
     const query = `SELECT * FROM job_creator WHERE emailID = ? LIMIT 1`;
 
-    conn.query(query, [email], (err, result) => {
+    conn.query(query, [email], async(err, result) => {
         if (err) {
             res.status(500).send('Server error');
             return;
@@ -17,12 +17,22 @@ const recruiterLogin = (req, res) => {
             if (result.length > 0) {
                 if(result[0].isActive == 1){
                     if(encPass === result[0].password){
-                        req.session.loggedIn = true;
+                        // req.session.loggedIn = true;
                         req.session.creator_id = result[0].creator_id;
                         req.session.creator_username = result[0].creator_fname + ' ' + result[0].creator_lname;
                         req.session.profilePic = result[0].profile_photo;
                         req.session.company_name = result[0].company;
-                        res.redirect('/jobCreator?toastNotification=Logged In Successfully!');
+                        // res.redirect('/jobCreator?toastNotification=Logged In Successfully!');
+                        try{
+                            const mailResult = await mailFunc.sendOtp(email);
+                            if(mailResult.success){
+                                req.session.creator_email = email;
+                                req.session.creator_otp = mailResult.otp;
+                                res.redirect('/jobCreator/verify_2fa');
+                            }
+                        }catch(error){
+                            res.send('Error while sending email');
+                        }
                     }else{
                         res.render('recruiter/recruiter_forms/recruiter_login', {errorMsg: 'Wrong Password', display: null});
                     }
@@ -35,6 +45,16 @@ const recruiterLogin = (req, res) => {
         }
     });
 };
+
+const verify_2fa = (req, res)=>{
+    const otp = req.body.otp1 + req.body.otp2 + req.body.otp3 + req.body.otp4;
+    if(otp == req.session.creator_otp){
+        req.session.loggedIn = true;
+        res.redirect('/jobCreator?toastNotification=Logged In Successfully!');
+    }else{
+        res.render('recruiter/recruiter_forms/recruiter_2fa', {errorMsg: 'Invalid OTP'});
+    }
+}
 
 const recruiterRegister = (req, res) => {
     const fname = req.body.fname,
@@ -115,6 +135,8 @@ const recruiterVerifyOtp = (req, res)=>{
     }
 };
 
+
+
 const recruiterResetPassword = (req, res)=>{
     const newPass = md5(req.body.new_password);
     const confirmPass = md5(req.body.confirm_password);
@@ -148,5 +170,6 @@ module.exports = {
     resendOtp,
     recruiterVerifyOtp,
     recruiterResetPassword,
-    recruiterLogOut
+    recruiterLogOut,
+    verify_2fa
 }

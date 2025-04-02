@@ -78,7 +78,7 @@
 
 
             const fetchApplicantionList = () => {
-                axios.get('http://localhost:3200/jobCreator/allSavedApplications').then((response) => {
+                axios.get('http://localhost:3000/jobCreator/allSavedApplications').then((response) => {
                     // console.log('then block mei huuuuuu');
                     setApplicationList(response.data.rows); 
                 })
