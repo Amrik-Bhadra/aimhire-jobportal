@@ -160,13 +160,20 @@
         const [currentPage, setCurrentPage] = useState(1);
         const itemsPerPage = 5;
 
+        const [API_BASE_URL, setApiBaseUrl] = useState("");
+
         useEffect(() => {
-          fetchDashboardDetails();
+          fetch("/config")
+            .then((response) => response.json())
+            .then((data) => {
+              setApiBaseUrl(data.API_BASE_URL);
+              fetchDashboardDetails(data.API_BASE_URL);
+            });
         }, []);
 
-        const fetchDashboardDetails = () => {
+        const fetchDashboardDetails = (API_BASE_URL) => {
           axios
-            .get("http://localhost:3000/jobSeeker/dashboard")
+            .get(`${API_BASE_URL}/jobSeeker/dashboard`)
             .then((response) => {
               const { user, applications, uniqueJobs } = response.data;
               setUserProfile(user);

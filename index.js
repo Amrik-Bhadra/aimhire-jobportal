@@ -59,6 +59,11 @@ app.use('/jobCreator', recruiterOperations);
 app.use('/admin', adminRoutes);
 
 
+app.get('/config', (req, res) => {
+    res.json({ API_BASE_URL: process.env.API_BASE_URL });
+});
+
+
 // inital route
 app.get('/', (req, res)=>{
     res.sendFile(path.join(__dirname, 'views', 'applicant', 'openningPage.html'));
