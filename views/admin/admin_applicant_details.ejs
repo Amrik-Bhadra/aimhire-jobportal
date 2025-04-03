@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="/function/Babel.js"></script>
-    <script src="/function/React.js"></script>
-    <script src="/function/ReactDOM.js"></script>
-    <link rel="shortcut icon" href="/PUBLIC/ASSETS/IMAGES/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/PUBLIC/css/recruiter_style.css">
+    <script src="/Babel.js"></script>
+    <script src="/React.js"></script>
+    <script src="/ReactDOM.js"></script>
+    <link rel="shortcut icon" href="/ASSETS/IMAGES/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/recruiter_style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -53,9 +53,9 @@
 
     
 
-    <script type="text/babel" src="/PUBLIC/components/AdminSideNavBar.js"></script>
-    <script type="text/babel" src="/PUBLIC/components/RecruiterHeader.js"></script>
-    <script type="text/babel" src="/PUBLIC/COMPONENTS/RecruiterFooter.js"></script>
+    <script type="text/babel" src="/components/AdminSideNavBar.js"></script>
+    <script type="text/babel" src="/components/RecruiterHeader.js"></script>
+    <script type="text/babel" src="/COMPONENTS/RecruiterFooter.js"></script>
 
     <script type="text/babel">
         const profilePic = "<%= profilePic %>";
@@ -83,11 +83,14 @@
             const itemsPerPage = 5;
 
             useEffect(() => {
-                fetchApplicantData();
+                fetch('/config').then((response) => response.json()).then((data)=>{
+                    fetchApplicantData(data.API_BASE_URL);
+                })
+                
             }, []);
 
-            const fetchApplicantData = () => {
-                axios.get('http://localhost:3000/admin/getApplicantData').then((response) => {
+            const fetchApplicantData = (API_BASE_URL) => {
+                axios.get(`${API_BASE_URL}/admin/getApplicantData`).then((response) => {
                     const data = response.data.applicantList[0] || {};
                     setApplicantList({
                         first_name: data.first_name || '',
@@ -135,7 +138,7 @@
                             <form action="/admin/updateApplicantDetails" method="post">
                                 <div className="details-form-left">
                                     <div className="image-box">
-                                        <img src={`/PUBLIC/ASSETS/UPLOADS/profile_images/${applicant.profile_pic_code}`} alt="profile-pic" className="applicant_image" />
+                                        <img src={`/ASSETS/UPLOADS/profile_images/${applicant.profile_pic_code}`} alt="profile-pic" className="applicant_image" />
                                     </div>
                                 </div>
                                 <div className="details-form-right">

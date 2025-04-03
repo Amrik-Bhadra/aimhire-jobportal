@@ -8,13 +8,13 @@
     <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="/PUBLIC/CSS/dashboard_style.css">
-    <link rel="stylesheet" href="/PUBLIC/CSS/applicant_style.css">
-    <script src="/function/Babel.js"></script>
-    <script src="/function/React.js"></script>
-    <script src="/function/ReactDOM.js"></script>
+    <link rel="stylesheet" href="/CSS/dashboard_style.css">
+    <link rel="stylesheet" href="/CSS/applicant_style.css">
+    <script src="/Babel.js"></script>
+    <script src="/React.js"></script>
+    <script src="/ReactDOM.js"></script>
     <script crossorigin src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link rel="shortcut icon" href="/PUBLIC/ASSETS/IMAGES/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/ASSETS/IMAGES/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Applicant Dashboard | AimHire</title>
     <style>
@@ -95,9 +95,9 @@
           </div>
           <div class="profile-pic-div" id="profile-div">
             <% if(profilePic == null){ %>
-              <img src="/PUBLIC/ASSETS/IMAGES/user.png" alt="profile-picture">
+              <img src="/ASSETS/IMAGES/user.png" alt="profile-picture">
             <% }else{ %>
-            <img src="/PUBLIC/ASSETS/UPLOADS/profile_images/<%= profilePic %>" alt="profile-picture">
+            <img src="/ASSETS/UPLOADS/profile_images/<%= profilePic %>" alt="profile-picture">
             <% } %>
           </div>
         </div>
@@ -120,7 +120,7 @@
                   <div class="notification-upper notification-slot">
                     <h3><%= notification.job_role %></h3>
                     <div class="company-logo-box">
-                      <img src="/PUBLIC/ASSETS/IMAGES/company_logos/<%= notification.company %>.png" alt="company-logo">
+                      <img src="/ASSETS/IMAGES/company_logos/<%= notification.company %>.png" alt="company-logo">
                     </div>
                   </div>
                   <div class="notification-lower notification-slot">
@@ -219,8 +219,8 @@
                   <img
                     src={
                       userProfile.profile_pic_code
-                        ? `/PUBLIC/ASSETS/UPLOADS/profile_images/${userProfile.profile_pic_code}`
-                        : "/PUBLIC/ASSETS/IMAGES/user.png"
+                        ? `/ASSETS/UPLOADS/profile_images/${userProfile.profile_pic_code}`
+                        : "/ASSETS/IMAGES/user.png"
                     }
                     alt="profile-picture"
                   />
@@ -240,7 +240,7 @@
                 </a>
                 <div className="buttons">
                   <a
-                    href={`/PUBLIC/ASSETS/UPLOADS/cv_pdfs/${userProfile.cv}`}
+                    href={`/ASSETS/UPLOADS/cv_pdfs/${userProfile.cv}`}
                     download
                   >
                     <div className="dashboard-button">Resume</div>
@@ -307,7 +307,7 @@
                         </div>
                         <div className="jobCard-upper-right-box">
                           <img
-                            src={`/PUBLIC/ASSETS/IMAGES/company_logos/${application.company}.png`}
+                            src={`/ASSETS/IMAGES/company_logos/${application.company}.png`}
                             alt="company-logo"
                           />
                         </div>
@@ -356,7 +356,7 @@
                   ))
                 ) : (
                   <div className="no-application">
-                    <img src="/PUBLIC/ASSETS/IMAGES/No data.png" alt="no-data" />
+                    <img src="/ASSETS/IMAGES/No data.png" alt="no-data" />
                     <h3>Not Applied For Any Jobs</h3>
                   </div>
                 )}
@@ -395,9 +395,9 @@
 
 
     <!-- Embed the data in a script tag -->
-    <script src="/PUBLIC/JS/script.js"></script>
-    <script type="text/babel" src="/PUBLIC/COMPONENTS/Footer.js"></script>
-    <script type="text/babel" src="/PUBLIC/COMPONENTS/Header.js"></script>
+    <script src="/JS/script.js"></script>
+    <script type="text/babel" src="/COMPONENTS/Footer.js"></script>
+    <script type="text/babel" src="/COMPONENTS/Header.js"></script>
     <script type="text/babel">
       ReactDOM.render(<Footer />, document.getElementById("footer"));
       ReactDOM.render(<Header />, document.getElementById("header"));

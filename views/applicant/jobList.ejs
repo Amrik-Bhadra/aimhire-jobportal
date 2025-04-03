@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/PUBLIC/CSS/applicant_style.css" />
 
-    <script src="/function/Babel.js"></script>
-    <script src="/function/React.js"></script>
-    <script src="/function/ReactDOM.js"></script>
+    <script src="/Babel.js"></script>
+    <script src="/React.js"></script>
+    <script src="/ReactDOM.js"></script>
 
     <link
       rel="shortcut icon"
-      href="/PUBLIC/ASSETS/IMAGES/favicon.png"
+      href="/ASSETS/IMAGES/favicon.png"
       type="image/x-icon"
     />
     <script
@@ -44,10 +44,10 @@
           </div>
           <div class="profile-pic-div" id="profile-div">
             <% if(profilePic == null){ %>
-            <img src="/PUBLIC/ASSETS/IMAGES/user.png" alt="profile-picture" />
+            <img src="/ASSETS/IMAGES/user.png" alt="profile-picture" />
             <% }else{ %>
             <img
-              src="/PUBLIC/ASSETS/UPLOADS/profile_images/<%= profilePic %>"
+              src="/ASSETS/UPLOADS/profile_images/<%= profilePic %>"
               alt="profile-picture"
             />
             <% } %>
@@ -80,7 +80,7 @@
                 <h3><%= notification.job_role %></h3>
                 <div class="company-logo-box">
                   <img
-                    src="/PUBLIC/ASSETS/IMAGES/company_logos/<%= notification.company %>.png"
+                    src="/ASSETS/IMAGES/company_logos/<%= notification.company %>.png"
                     alt="company-logo"
                   />
                 </div>
@@ -126,9 +126,9 @@
       <div class="footerContainer" id="footer"></div>
     </footer>
 
-    <script src="/PUBLIC/JS/script.js"></script>
-    <script type="text/babel" src="/PUBLIC/components/Footer.js"></script>
-    <script type="text/babel" src="/PUBLIC/components/Header.js"></script>
+    <script src="/JS/script.js"></script>
+    <script type="text/babel" src="/components/Footer.js"></script>
+    <script type="text/babel" src="/components/Header.js"></script>
 
     <script>
       let toastBox = document.getElementById("toastBox");

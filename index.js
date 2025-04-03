@@ -37,8 +37,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(session(sessionOption));
 
 // setup static files  /views/
-app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/function', express.static(path.join(__dirname, 'function')));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'function')));
 
 // setup viewing engine
 app.set('views', path.join(__dirname, 'views'));
@@ -57,10 +57,6 @@ app.use('/jobCreator', recruiterAuth);
 app.use('/jobCreator', recruiterOperations);
 
 app.use('/admin', adminRoutes);
-
-app.use((req, res, next) => {
-    res.status(404).send("Page not found");
-});
 
 
 app.get('/config', (req, res) => {
