@@ -64,3 +64,4 @@ jobs:
           app-name: 'aimhire'
           slot-name: 'Production'
           package: .
+          startup-command: 'npx nodemon index.js'
