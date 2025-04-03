@@ -12,7 +12,7 @@ app.use(session({
     cookie:{
         secure: false,
         maxAge: 600000,
-        httpOnly: true,  // max false in production
+        httpOnly: false,  // max false in production
         sameSite: 'lax'
     },
     unset: 'destroy',
