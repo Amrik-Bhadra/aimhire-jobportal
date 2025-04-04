@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const session = require('express-session');
+const compression = require('compression');
 
 // import routes files
 const applicantAuthenRoutes = require('./routes/applicantAuthen.routes');
@@ -43,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'function')));
 // setup viewing engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(compression());
 
 
 // db connection
