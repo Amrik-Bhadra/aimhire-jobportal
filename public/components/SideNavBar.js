@@ -5,7 +5,7 @@ function SideNavBar() {
             <div className="recruiter-nav-part1 recruiter-nav-part">
                 <div className="nav-logo-box">
                     <a href="/HTML/index.html">
-                        <img src="/PUBLIC/assets/images/favicon.png" alt="logo"/>
+                        <img src="/assets/images/favicon.png" alt="logo"/>
                         <h2>AimHire</h2>
                     </a>
                 </div>

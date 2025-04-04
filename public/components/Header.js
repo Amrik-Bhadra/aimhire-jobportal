@@ -2,7 +2,7 @@
 function Header(){
     return(
         <>
-          <a className="logo" href="/jobSeeker/"><img src="/PUBLIC/ASSETS/IMAGES/favicon.png" alt="" />Aim<span>Hire</span></a>
+          <a className="logo" href="/jobSeeker/"><img src="/ASSETS/IMAGES/favicon.png" alt="" />Aim<span>Hire</span></a>
           <nav>
             <ul>
               <li><a href="/jobSeeker/" className='navLinks'>Home</a></li>
